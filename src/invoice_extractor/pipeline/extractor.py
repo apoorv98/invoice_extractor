@@ -2,7 +2,6 @@
 
 from utils.pdf import pdf_to_images
 from preprocessing.image import preprocess_image
-from ocr.paddle_runtime import run_ocr
 
 from parsing.header import extract_invoice_number, extract_invoice_date
 from parsing.totals import extract_gstin, extract_total_value
@@ -30,23 +29,27 @@ def build_lines_from_doc_ocr(result):
     return lines
 
 
-def extract_invoice(pdf_path: str):
-    images = pdf_to_images(pdf_path)
-    results = []
+class InvoiceExtractor:
+    def __init__(self, ocr_engine):
+        self.ocr = ocr_engine
 
-    for page_num, img in enumerate(images, start=1):
-        processed = preprocess_image(img)
-        ocr_result = run_ocr(processed)
-        lines = build_lines_from_doc_ocr(ocr_result)
+    def extract(self, pdf_path: str):
+        images = pdf_to_images(pdf_path)
+        results = []
 
-        results.append({
-            "page": page_num,
-            "invoice_number": extract_invoice_number(lines),
-            "invoice_date": extract_invoice_date(lines),
-            "gstin": extract_gstin(lines),
-            "total_value": extract_total_value(lines),
-            "address": extract_addresses(lines),
-            "items": parse_invoice_items(lines),
-        })
+        for page_num, img in enumerate(images, start=1):
+            processed = preprocess_image(img)
+            ocr_result = self.ocr.extract(processed)
+            lines = build_lines_from_doc_ocr(ocr_result)
 
-    return results
+            results.append({
+                "page": page_num,
+                "invoice_number": extract_invoice_number(lines),
+                "invoice_date": extract_invoice_date(lines),
+                "gstin": extract_gstin(lines),
+                "total_value": extract_total_value(lines),
+                "address": extract_addresses(lines),
+                "items": parse_invoice_items(lines),
+            })
+
+        return results
