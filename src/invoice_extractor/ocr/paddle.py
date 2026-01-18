@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from paddleocr import PaddleOCR
-from ocr.base import OCREngine
+from invoice_extractor.ocr.base import OCREngine
 
 
 class PaddleOCREngine(OCREngine):
