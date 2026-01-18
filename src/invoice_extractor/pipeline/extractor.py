@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from utils.pdf import pdf_to_images
-from preprocessing.image import preprocess_image
+from utils.pdf import load_pdf_as_images
+from preprocessing.image import preprocess_for_ocr
 
 from parsing.header import extract_invoice_number, extract_invoice_date
 from parsing.totals import extract_gstin, extract_total_value
