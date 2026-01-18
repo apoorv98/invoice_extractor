@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from pdf2image import convert_from_path
-from config.settings import PDFSettings, OCRSettings
+from invoice_extractor.config.settings import PDFSettings, OCRSettings
 
 
 def load_pdf_as_images(pdf_path: str):

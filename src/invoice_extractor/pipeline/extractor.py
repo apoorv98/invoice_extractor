@@ -3,14 +3,14 @@
 import logging
 from typing import List, Dict, Any
 
-from utils.pdf import load_pdf_as_images
-from preprocessing.image import preprocess_for_ocr
+from invoice_extractor.utils.pdf import load_pdf_as_images
+from invoice_extractor.preprocessing.image import preprocess_for_ocr
 
-from parsing.lines import normalize_ocr_result
-from parsing.header import extract_invoice_number, extract_invoice_date
-from parsing.totals import extract_gstin, extract_total_value
-from parsing.address import extract_addresses
-from parsing.items import parse_invoice_items
+from invoice_extractor.parsing.lines import normalize_ocr_result
+from invoice_extractor.parsing.header import extract_invoice_number, extract_invoice_date
+from invoice_extractor.parsing.totals import extract_gstin, extract_total_value
+from invoice_extractor.parsing.address import extract_addresses
+from invoice_extractor.parsing.items import parse_invoice_items
 
 
 logger = logging.getLogger(__name__)
