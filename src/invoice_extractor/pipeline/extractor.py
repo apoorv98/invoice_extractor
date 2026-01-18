@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from typing import List, Dict, Any
+
 from utils.pdf import load_pdf_as_images
 from preprocessing.image import preprocess_for_ocr
 
@@ -10,13 +12,29 @@ from parsing.address import extract_addresses
 from parsing.items import parse_invoice_items
 
 
+InvoicePageResult = Dict[str, Any]
+
+
 class InvoiceExtractor:
+    """
+    Public API for invoice data extraction.
+
+    Responsibilities:
+    - Orchestrate PDF loading, OCR, preprocessing
+    - Invoke parsing domain logic
+    - Assemble structured invoice output
+
+    Does NOT:
+    - Implement OCR logic
+    - Implement parsing heuristics
+    """
+
     def __init__(self, ocr_engine):
         self.ocr = ocr_engine
 
-    def extract(self, pdf_path: str):
+    def extract(self, pdf_path: str) -> List[InvoicePageResult]:
         images = load_pdf_as_images(pdf_path)
-        results = []
+        results: List[InvoicePageResult] = []
 
         for page_num, img in enumerate(images, start=1):
             processed_image = preprocess_for_ocr(img)
