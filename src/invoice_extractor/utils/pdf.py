@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+from pdf2image import convert_from_path
+from config.settings import PDFSettings, OCRSettings
+
+
+def pdf_to_images(pdf_path: str):
+    pdf_cfg = PDFSettings()
+    ocr_cfg = OCRSettings()
+
+    return convert_from_path(
+        pdf_path,
+        dpi=ocr_cfg.dpi,
+        poppler_path=pdf_cfg.poppler_path
+    )

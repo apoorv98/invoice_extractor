@@ -1,0 +1,26 @@
+{
+  "basic_invoice": [
+    { "text": "Invoice No INV-10293", "confidence": 0.98 },
+    { "text": "Invoice Date 13-Aug-2025", "confidence": 0.97 },
+    { "text": "GSTIN: 27ABCDE1234F1Z5", "confidence": 0.95 },
+    { "text": "Total Invoice Value", "confidence": 0.92 },
+    { "text": "125000.00", "confidence": 0.93 }
+  ],
+
+  "address_block": [
+    { "text": "Registered Office", "confidence": 0.90 },
+    { "text": "12 MG Road", "confidence": 0.94 },
+    { "text": "Andheri East", "confidence": 0.93 },
+    { "text": "Mumbai", "confidence": 0.91 }
+  ],
+
+  "line_items": [
+    { "text": "851712", "confidence": 0.99 },
+    { "text": "Mobile Handset Model X", "confidence": 0.96 },
+    { "text": "2", "confidence": 0.94 },
+    { "text": "45000", "confidence": 0.95 },
+    { "text": "18%", "confidence": 0.93 },
+    { "text": "90000", "confidence": 0.92 },
+    { "text": "356789012345678", "confidence": 0.90 }
+  ]
+}
